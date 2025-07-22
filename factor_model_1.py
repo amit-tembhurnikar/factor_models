@@ -64,12 +64,12 @@ if option == "Factor Investment Model for Indices (Long only)":
         st.error("No data downloaded from yfinance. Check your internet connection or ticker symbols.")
         st.stop()
 
-    valid_data = {k: v for k, v in data.items() if not v.empty}
+    #valid_data = {k: v for k, v in data.items() if not v.empty}
     prices = pd.concat(valid_data.values(), axis=1)
     prices.columns = list(valid_data.keys())
 
     prices.index = pd.to_datetime(prices.index)
-    prices = prices.dropna(axis=1, how='all')
+    #prices = prices.dropna(axis=1, how='all')
 
     # === Calculate Barra-style factors ===
     log_returns = np.log(prices / prices.shift(1))
@@ -271,7 +271,7 @@ elif option == "Factor Risk of Portfolio":
         prices_df = pd.concat(prices.values(), axis=1)
         prices_df.columns = list(prices.keys())[:prices_df.shape[1]]  # match column length
         prices_df.index = pd.to_datetime(prices_df.index)
-        prices_df = prices_df.dropna(axis=1, how='all')
+        #prices_df = prices_df.dropna(axis=1, how='all')
 
         monthly_prices = prices_df.resample('ME').last()
         log_returns = np.log(prices_df / prices_df.shift(1))
@@ -298,7 +298,7 @@ elif option == "Factor Risk of Portfolio":
         benchmark_prices_df = pd.concat(benchmark_prices.values(), axis=1)
         benchmark_prices_df.columns = list(benchmark_prices.keys())[:benchmark_prices_df.shape[1]]
         benchmark_prices_df.index = pd.to_datetime(benchmark_prices_df.index)
-        benchmark_prices_df = benchmark_prices_df.dropna(axis=1, how='all')
+        #benchmark_prices_df = benchmark_prices_df.dropna(axis=1, how='all')
         benchmark_monthly_prices = benchmark_prices_df.resample('ME').last()
         benchmark_log_returns = np.log(benchmark_prices_df / benchmark_prices_df.shift(1))
 
