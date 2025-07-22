@@ -36,7 +36,7 @@ START_DATE = "2005-12-31"
 END_DATE = "2025-07-31"
 REBALANCE_MONTHS = [3, 6, 9, 12]  # Quarterly
 
-if option == "Factor Investment Model for Indices":
+if option == "Factor Investment Model for Indices (Long only)":
     st.subheader("Factor Investment for Indian indices")
     index_name = st.selectbox("Select Index", ["Nifty 50", "Nifty 500"])
     df_members = get_index_members(index_name)
