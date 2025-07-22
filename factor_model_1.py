@@ -64,8 +64,9 @@ if option == "Factor Investment Model for Indices (Long only)":
         st.error("No data downloaded from yfinance. Check your internet connection or ticker symbols.")
         st.stop()
 
-    prices = pd.concat(data.values(), axis=1)
-    prices.columns = data.keys()
+    valid_data = {k: v for k, v in data.items() if not v.empty}
+    prices = pd.concat(valid_data.values(), axis=1)
+    prices.columns = list(valid_data.keys())
 
     prices.index = pd.to_datetime(prices.index)
     prices = prices.dropna(axis=1, how='all')
